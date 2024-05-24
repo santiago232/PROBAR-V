@@ -6,4 +6,6 @@
     public decimal PrecioVenta { get; set; }
     public DateTime FechaCaducidad { get; set; }
     public string NumeroLote { get; set; }
+
+
 }

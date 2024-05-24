@@ -5,14 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinal4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="500" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#3B5998"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#8A2BE2"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#1A237E"/>
+
+        <SolidColorBrush x:Key="HeaderColor1" Color="SkyBlue"/>
+        <SolidColorBrush x:Key="HeaderColor2" Color="LightSkyBlue"/>
+        <SolidColorBrush x:Key="HeaderColor3" Color="SkyBlue"/>
+        <SolidColorBrush x:Key="HeaderColor4" Color="LightSkyBlue"/>
+
+
+        <Style TargetType="TabControl">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+            <Setter Property="BorderThickness" Value="0 0 1 0"/>
+        </Style>
+
+        <Style x:Key="Header1" TargetType="TabItem">
+            <Setter Property="Background" Value="{StaticResource HeaderColor1}"/>
+        </Style>
+        <Style x:Key="Header2" TargetType="TabItem">
+            <Setter Property="Background" Value="{StaticResource HeaderColor2}"/>
+        </Style>
+        <Style x:Key="Header3" TargetType="TabItem">
+            <Setter Property="Background" Value="{StaticResource HeaderColor3}"/>
+        </Style>
+        <Style x:Key="Header4" TargetType="TabItem">
+            <Setter Property="Background" Value="{StaticResource HeaderColor4}"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,5,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="Margin" Value="0,5,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SecondaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{StaticResource BackgroundColor}">
         <TabControl>
-            <TabItem Header="Registro de Transacciones">
+            <TabItem Header="Registro de Transacciones" Style="{StaticResource Header1}">
                 <StackPanel Margin="10">
-                    <!-- ComboBox para seleccionar el tipo de transacción -->
                     <TextBlock Text="Tipo de Transacción:"/>
-                    <ComboBox x:Name="cmbTipoTransaccion" Width="200" Margin="0,5,0,10">
+                    <ComboBox x:Name="cmbTipoTransaccion" Width="200">
                         <ComboBoxItem>Compra</ComboBoxItem>
                         <ComboBoxItem>Venta</ComboBoxItem>
                         <ComboBoxItem>Gasto</ComboBoxItem>
@@ -20,23 +101,23 @@
                     </ComboBox>
 
                     <TextBlock Text="Descripción:"/>
-                    <TextBox x:Name="txtDescripcion" Width="200" Margin="0,5,0,10"/>
+                    <TextBox x:Name="txtDescripcion" Width="200"/>
 
                     <TextBlock Text="Monto:"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="txtMonto" Width="150" Margin="0,5,10,10"/>
-                        <TextBox x:Name="txtTipoMoneda" Width="50" Margin="0,5,0,10" Text="Q"/>
+                        <TextBox x:Name="txtMonto" Width="150"/>
+                        <TextBox x:Name="txtTipoMoneda" Width="50" Text="Q"/>
                     </StackPanel>
 
-                    <TextBlock Text="Cantidad:" Visibility="Visible" x:Name="lblCantidad"/>
-                    <TextBox x:Name="txtCantidad" Width="200" Margin="0,5,0,10" Visibility="Visible"/>
+                    <TextBlock Text="Cantidad:" Visibility="Collapsed" x:Name="lblCantidad"/>
+                    <TextBox x:Name="txtCantidad" Width="200" Visibility="Collapsed"/>
 
-                    <DataGrid x:Name="dgTransacciones" AutoGenerateColumns="False" Margin="0,20,0,0">
+                    <DataGrid x:Name="dgTransacciones" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}"/>
                             <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}"/>
                             <DataGridTextColumn Header="Monto" Binding="{Binding Monto}"/>
-                            <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Visibility="Visible"/>
+                            <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Visibility="Collapsed"/>
                             <DataGridTextColumn Header="Tipo de Moneda" Binding="{Binding TipoMoneda}" Visibility="Collapsed"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -45,33 +126,17 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Gestión de Inventario">
-                
+            <TabItem Header="Gestión de Inventario" Style="{StaticResource Header2}">
                 <StackPanel Margin="10">
-                    <TextBlock Text="Nombre del Producto:"/>
-                    <TextBox x:Name="txtNombreProducto" Width="200" Margin="0,5,0,10"/>
 
-                    <TextBlock Text="Cantidad:"/>
-                    <TextBox x:Name="txtCantidadProducto" Width="200" Margin="0,5,0,10"/>
-
-                    <TextBlock Text="Precio de Compra:"/>
-                    <TextBox x:Name="txtPrecioCompra" Width="200" Margin="0,5,0,10"/>
-
-                    <TextBlock Text="Precio de Venta:"/>
-                    <TextBox x:Name="txtPrecioVenta" Width="200" Margin="0,5,0,10"/>
-
-                    <TextBlock Text="Fecha de Caducidad:"/>
-                    <DatePicker x:Name="dpFechaCaducidad" Width="200" Margin="0,5,0,10"/>
-
-                    <TextBlock Text="Número de Lote:"/>
-                    <TextBox x:Name="txtNumeroLote" Width="200" Margin="0,5,0,10"/>
+                   
                     
-                    <Button x:Name="btnMostrarCatalogoProductos" Content="Mostrar Catálogo" Click="MostrarCatalogoProductos_Click"/>
-
-
                     <Button Content="Agregar Producto" Click="AgregarProducto_Click"/>
+                    <Button Content="Actualizar Producto" Click="ActualizarProducto_Click"/>
+                    <Button Content="Eliminar Producto" Click="EliminarProducto_Click"/>
 
-                    <DataGrid x:Name="dgInventario" AutoGenerateColumns="False" Margin="0,20,0,0">
+
+                    <DataGrid x:Name="dgInventario" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
                             <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
@@ -79,59 +144,23 @@
                             <DataGridTextColumn Header="Precio Venta" Binding="{Binding PrecioVenta}"/>
                             <DataGridTextColumn Header="Fecha Caducidad" Binding="{Binding FechaCaducidad}"/>
                             <DataGridTextColumn Header="Número Lote" Binding="{Binding NumeroLote}"/>
-
-                                    <DataGridTemplateColumn Header="Actualizar">
-            <DataGridTemplateColumn.CellTemplate>
-                <DataTemplate>
-                    <Button Content="Actualizar" Click="ActualizarProducto_Click"/>
-                </DataTemplate>
-            </DataGridTemplateColumn.CellTemplate>
-        </DataGridTemplateColumn>
-        <DataGridTemplateColumn Header="Borrar">
-            <DataGridTemplateColumn.CellTemplate>
-                <DataTemplate>
-                    <Button Content="Borrar" Click="BorrarProducto_Click"/>
-                </DataTemplate>
-            </DataGridTemplateColumn.CellTemplate>
-        </DataGridTemplateColumn>
-    </DataGrid.Columns>
-</DataGrid>
-
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Control de Caja">
-                <StackPanel Margin="10">
-                    <TextBlock Text="Tipo de Movimiento:"/>
-                    <ComboBox x:Name="cmbTipoMovimiento" Width="200" Margin="0,5,0,10">
-                        <ComboBoxItem>Ingreso</ComboBoxItem>
-                        <ComboBoxItem>Egreso</ComboBoxItem>
-                    </ComboBox>
-
-                    <TextBlock Text="Descripción:"/>
-                    <TextBox x:Name="txtDescripcionMovimiento" Width="200" Margin="0,5,0,10"/>
-
-                    <TextBlock Text="Monto:"/>
-                    <TextBox x:Name="txtMontoMovimiento" Width="200" Margin="0,5,0,10"/>
-
-                    <Button Content="Registrar Movimiento" Click="RegistrarMovimiento_Click"/>
-
-                    <DataGrid x:Name="dgMovimientos" AutoGenerateColumns="False" Margin="0,20,0,0">
+            <TabItem Header="Control de Caja" Style="{StaticResource Header3}" Height="20" VerticalAlignment="Top">
+                <StackPanel Margin="5">
+                    <DataGrid x:Name="dgMovimientos" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tipo de Movimiento" Binding="{Binding TipoMovimiento}"/>
                             <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}"/>
                             <DataGridTextColumn Header="Monto" Binding="{Binding Monto}"/>
                             <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"/>
-                            
-                            
                         </DataGrid.Columns>
                     </DataGrid>
-                    
                 </StackPanel>
             </TabItem>
-
         </TabControl>
     </Grid>
 </Window>
-
-
