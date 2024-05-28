@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace ProyectoFinal4
+namespace ProyectoFinal2
 {
     /// <summary>
     /// Interaction logic for App.xaml
